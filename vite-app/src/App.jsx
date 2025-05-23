@@ -5,6 +5,7 @@ import "./App.css";
 import ChildrenProp from "./components/ChildrenProp";
 import ReUsableComponent from "./components/ReUsableComponent";
 import { CORE_CONCEPTS } from "./data.js";
+import TabButton from "./components/TabButton.jsx";
 
 function HeaderComponent() {
   return (
@@ -22,6 +23,12 @@ function HeaderComponent() {
   );
 }
 function App() {
+  let tabContent = "Select a tab to see the content";
+  const [selectedTab, setSelectedTab] = useState(tabContent);
+  function handleSelect(selectedButton) {
+    console.log("Tab button clicked", selectedButton);
+    setSelectedTab(selectedButton);
+  }
   return (
     <>
       <HeaderComponent></HeaderComponent>
@@ -36,6 +43,21 @@ function App() {
         <ReUsableComponent {...CORE_CONCEPTS[2]} />
         <ReUsableComponent {...CORE_CONCEPTS[3]} />
       </ul>
+      <section id="examples">
+        <h2>Tab Button Demo</h2>
+        <p>Click on the tab button to see the effect</p>
+        <menu>
+          <TabButton onSelect={() => handleSelect("JSX")}>JSX</TabButton>
+          <TabButton onSelect={() => handleSelect("Props")}>Props</TabButton>
+          <TabButton onSelect={() => handleSelect("State")}>State</TabButton>
+        </menu>
+        <p>
+          <strong>Note:</strong> The TabButton component is a reusable component
+          that can be used to create tab buttons. It takes the children prop to
+          display the text on the button.
+        </p>
+        {selectedTab}
+      </section>
     </>
   );
 }
