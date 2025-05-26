@@ -58,6 +58,7 @@ function App() {
         </p>
         {selectedTab}
       </section>
+      <h2>CSS module CSS Demo</h2>
     </>
   );
 }
